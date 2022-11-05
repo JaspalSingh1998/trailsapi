@@ -18,7 +18,7 @@ mongoose.connect(url,connectionParams)
     })
 
 app.use(express.json())
-app.use('/trails', trails);
+app.use('/', trails);
 
 
 app.listen(3000, () => console.log('App is running on port 3000'));
