@@ -12,6 +12,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+// Top trails
+router.get('/top', async (req, res) => {
+    console.log('hii')
+    try {
+        const trails = await Trail.find().sort({ _id: -1 }).limit(5)
+        res.json({trails})
+    } catch (error) {
+        res.status(400);
+    }
+})
+
 router.post('/', async (req, res) => {
     const trail = new Trail(req.body);
     try {
@@ -25,7 +36,6 @@ router.post('/', async (req, res) => {
 router.get('/:id', (req, res) => {
     try {
         const trail = Trail.findById(req.params.id)
-        console.log(trail);
         res.json(trail)
     } catch (error) {
         res.status(400);
